@@ -61,6 +61,9 @@ def run_game():
 
         ## Handle events.
 
+        # Control the framerate of the game
+        pygame.time.delay(15)
+
         # If the user exits the window, quit the game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -121,7 +124,7 @@ def run_game():
         increment = 1
 
         # Accelerate the ball every 500 frames
-        if frame_count == 500:
+        if frame_count >= 500:
             frame_count = 0
             if x_v > 0:
                 x_v += increment
@@ -236,14 +239,14 @@ def run_game():
         my_win.blit(score_label_2, (760,5))       
 
         # Two circles that combine to the make 'center circle'
-        pygame.draw.circle(my_win, pygame.color.Color("black"), (width/2, height/2), 125)
-        pygame.draw.circle(my_win, pygame.color.Color("lightblue"), (width/2, height/2), 123)
+        pygame.draw.circle(my_win, pygame.color.Color("black"), (int(width/2), int(height/2)), 125)
+        pygame.draw.circle(my_win, pygame.color.Color("lightblue"), (int(width/2), int(height/2)), 123)
 
         # 'Half court' line
         pygame.draw.rect(my_win, pygame.color.Color("black"), (424,0,2,height))
 
         # The ball
-        pygame.draw.circle(my_win, pygame.color.Color("red"), (x,y), radius)
+        pygame.draw.circle(my_win, pygame.color.Color("red"), (int(x),int(y)), int(radius))
 
         # Player 1 bumper
         pygame.draw.rect(my_win, pygame.color.Color("blue"), (b1_x,b1_y,bumper_w,bumper_h))
